@@ -1,0 +1,8 @@
+#Generated 100,000 image captchas each of 8 alphanumeric characters
+./generate.py --width 128 --height 64 --length 8 --symbols symbols.txt --count 100000 --output-dir test
+
+# Split Train and Test data and created a Model
+./train.py --width 128 --height 64 --length 8 --symbols symbols.txt --batch-size 8 --epochs 5 --output-model test.h5 --train-dataset training_data --validate-dataset validation_data
+
+# Implemented model to read 750 image captchas using Classifier and producing a csv file
+./classify.py  --model-name test --captcha-dir ~/Downloads/validation_data/ --output ~/Downloads/stuff.csv --symbols symbols.txt
